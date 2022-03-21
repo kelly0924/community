@@ -69,37 +69,47 @@
 
         <script>
             var boardList = <%=dataList%>;
-            var boardData = <%=data%>
+            var boardData = <%=data%>;
             console.log(boardList.length);
             
-            var newTbody=document. getElementById("tbody");
+            window.onload = function() {
+                var newTbody=document. getElementById("tbody");
+                var boardIndex=0;
+                for(var index = 0; index<boardList.length; index++){
+                    var newTr=document.createElement("tr");
+                    newTr.setAttribute("class","tbodyTr");
+                    newTbody.appendChild(newTr);
 
-            for(var index = 0; index<boardList.length; index++){
+                    var newCountTd=document.createElement("td");
+                    newCountTd.setAttribute("class","countTd")
+                    newTr.appendChild(newCountTd);
+                    newCountTd.innerHTML=boardData[boardIndex];
+                    boardIndex++;
 
-                var newTr=document.createElement("tr");
-                newTr.setAttribute("class","tbodyTr");
-                newTbody.appendChild(newTr);
-                var newCountTd=document.createElement("td");
-                newCountTd.setAttribute("class","countTd")
-                newTr.appendChild(newCountTd);
-                var newTitleTd=document.createElement("td");
-                newTitleTd.setAttribute("class","titleTd");
-                newTr.appendChild(newTitleTd);
-                var newWriterTd=document.createElement("td");
-                newWriterTd.setAttribute("class","writerTd");
-                newTr.appendChild(newWriterTd);
-                var newWriteDateTd=document.createElement("td");
-                newWriteDateTd.setAttribute("class","writeDateTd");
-                newTr.appendChild(newWriteDateTd);
+
+                    var newTitleTd=document.createElement("td");
+                    newTitleTd.setAttribute("class","titleTd");
+                    newTr.appendChild(newTitleTd);
+                    var newA=document.createElement("a");
+                    newA.setAttribute("class","newTitleTdA");
+                    newA.setAttribute("href","boardContents.jsp")
+                    newTitleTd.appendChild(newA);
+                    newA.innerHTML=boardData[boardIndex];
+                    boardIndex++;
+
+                    var newWriterTd=document.createElement("td");
+                    newWriterTd.setAttribute("class","writerTd");
+                    newTr.appendChild(newWriterTd);
+                    
+                    var newWriteDateTd=document.createElement("td");
+                    newWriteDateTd.setAttribute("class","writeDateTd");
+                    newTr.appendChild(newWriteDateTd);
+                     newWriteDateTd.innerHTML=boardData[boardIndex];
+                }
+
             }
 
             console.log(boardData.length)
-            for(var i=0; i<boardList.length; i++){
-                for(var j=0; j<boardData.length; j++){
-                    
-                }
-            }
-
         </script>
     </body>
 </html>
