@@ -45,7 +45,7 @@
         <header> </header>
 
         <main>
-        <div> </div>
+            <div></div>
             <table>
                 <thead>
                     <tr>
@@ -70,8 +70,24 @@
         <script>
             var boardList = <%=dataList%>;
             var boardData = <%=data%>;
+            var boarCount;//count 값을 저장 할 변수  
             console.log(boardList.length);
-            
+
+            function moveBoardConentsEvent(){
+                console.log("호출");
+                // var resultDiv=document.getElementById("tbody");
+                // var newForm=document.createElement("form");
+                // newForm.setAttribute("action","boardContents.jsp");
+                // newForm.setAttribute("method","post");
+                // resultDiv.appendChild(newForm);
+                // var newInput=document.createElement("input");
+                // newInput.setAttribute("name","boardcnt");
+                // newForm.appendChild(newInput);
+                //newForm.submit();
+                
+
+            }
+
             window.onload = function() {
                 var newTbody=document. getElementById("tbody");
                 var boardIndex=0;
@@ -84,18 +100,19 @@
                     newCountTd.setAttribute("class","countTd")
                     newTr.appendChild(newCountTd);
                     newCountTd.innerHTML=boardData[boardIndex];
+                    boarCount=boardData[boardIndex];
                     boardIndex++;
-
 
                     var newTitleTd=document.createElement("td");
                     newTitleTd.setAttribute("class","titleTd");
                     newTr.appendChild(newTitleTd);
-                    var newA=document.createElement("a");
-                    newA.setAttribute("class","newTitleTdA");
-                    newA.setAttribute("href","boardContents.jsp")
-                    newTitleTd.appendChild(newA);
-                    newA.innerHTML=boardData[boardIndex];
+                    // var newA=document.createElement("a");
+                    // newA.setAttribute("class","newTitleTdA");
+                    // newA.setAttribute("href","boardContents.jsp")
+                    // newTitleTd.appendChild(newA);
+                    newTitleTd.innerHTML=boardData[boardIndex];
                     boardIndex++;
+                    newTitleTd.addEventListener("click",moveBoardConentsEvent);
 
                     var newWriterTd=document.createElement("td");
                     newWriterTd.setAttribute("class","writerTd");
@@ -104,10 +121,12 @@
                     var newWriteDateTd=document.createElement("td");
                     newWriteDateTd.setAttribute("class","writeDateTd");
                     newTr.appendChild(newWriteDateTd);
-                     newWriteDateTd.innerHTML=boardData[boardIndex];
+                    newWriteDateTd.innerHTML=boardData[boardIndex];
                 }
 
             }
+
+           
 
             console.log(boardData.length)
         </script>

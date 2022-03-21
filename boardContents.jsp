@@ -11,17 +11,7 @@
     //DB 연결
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect =DriverManager.getConnection("jdbc:mysql://localhost:3306/communityDB", "community","1234");//데이터 베이스 계정 아이디, 데이터베이스 계정 비밀번호
-    
-    String sql="SELECT *FROM board";
-    PreparedStatement query=connect.prepareStatement(sql);
-    ResultSet result=query.executeQuery();
 
-    while(result.next()){
-       data.add("'" + Integer.toString(result.getInt(1)) + "'");
-       data.add("'" + result.getString(3) + "'");
-       data.add("'" + result.getString(5) + "'");
-       dataList.add(data);
-    }
 
 %>
 
@@ -34,10 +24,17 @@
     <title>week7 project</title>
 </head>
 <body>
+   <header>
    
-    <h2>제목에 해당 하는 내용 볼 수  있고 내용 삭제 가능하게 만들었다.</h2>
-    <div></div>
-    <div></div>
+   </header>
+   <main>
+         <h2>제목에 해당 하는 내용 볼 수  있고 내용 삭제 가능하게 만들었다.</h2>
+         <div>계시글 내용</div>
+         <div>
+            <input type="button" value="삭제">
+            <input type="button" value="수정">
+         </div>
+   </main>
     
 </body>
 </html>
