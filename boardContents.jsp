@@ -48,7 +48,7 @@
             </div>
             <div>
                 <input type="button" value="삭제" deleteFun>
-                <input type="button" value="수정" onclick="modifiyFun()">
+                <input id="deletButton" type="button" value="수정">
                 <input type="submit" value="저장">
             </div>
         </form>    
@@ -57,8 +57,11 @@
         console.log("<%=resultBoardContents%>");
         document.getElementById("contentsDivTextarea").innerHTML="<%=resultBoardContents%>";
 
+        var boardCnt=<%=resultCnt%>;
+        var deletBut=document.getElementById("deletButton");
+        deletBut.addEventListener('click',deleteFun)
+
         function deleteFun(){
-            var boardCnt=<%=resultCnt%>;
             var newForm=document.createElement("form");
                 newForm.setAttribute("action","deleteModule.jsp");
                 newForm.setAttribute("method","post");
