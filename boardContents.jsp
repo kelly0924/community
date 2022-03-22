@@ -7,12 +7,23 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    String resultTitle="";
+    String resultCnt=request.getParameter("boardcount");
+    String resultBoardContents="";
     //DB 연결
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect =DriverManager.getConnection("jdbc:mysql://localhost:3306/communityDB", "community","1234");//데이터 베이스 계정 아이디, 데이터베이스 계정 비밀번호
+    
+    String sql="SELECT * FROM board WHERE boardId=?";
+    PreparedStatement query=connect.prepareStatement(sql);
+    int temp= Integer.valueOf(resultCnt);
+    query.setInt(1,temp);
 
-
+    ResultSet result = query.executeQuery();
+    
+    while(result.next()){
+        resultBoardContents=result.getString(4);
+    }
+   
 %>
 
 
@@ -29,12 +40,36 @@
    </header>
    <main>
          <h2>제목에 해당 하는 내용 볼 수  있고 내용 삭제 가능하게 만들었다.</h2>
-         <div>계시글 내용</div>
-         <div>
-            <input type="button" value="삭제">
-            <input type="button" value="수정">
-         </div>
+        <form action="saveModule.jsp" method="post">
+            <div id="contentsDiv">
+                <h2>계시글 내용</h2>
+                <input type="hidden" name="boardCount" value="<%=resultCnt%>">
+                <textarea id="contentsDivTextarea" name="contents"></textarea>
+            </div>
+            <div>
+                <input type="button" value="삭제" deleteFun>
+                <input type="button" value="수정" onclick="modifiyFun()">
+                <input type="submit" value="저장">
+            </div>
+        </form>    
    </main>
-    
+    <script>
+        console.log("<%=resultBoardContents%>");
+        document.getElementById("contentsDivTextarea").innerHTML="<%=resultBoardContents%>";
+
+        function deleteFun(){
+            var boardCnt=<%=resultCnt%>;
+            var newForm=document.createElement("form");
+                newForm.setAttribute("action","deleteModule.jsp");
+                newForm.setAttribute("method","post");
+                resultDiv.appendChild(newForm);
+                var newInput=document.createElement("input");
+                newInput.setAttribute("name","boardcount");
+                newInput.setAttribute("value",boardCnt);
+                newForm.appendChild(newInput);
+                newForm.submit();
+         }
+        
+    </script>
 </body>
 </html>

@@ -73,17 +73,18 @@
             var boarCount;//count 값을 저장 할 변수  
             console.log(boardList.length);
 
-            function moveBoardConentsEvent(){
-                console.log("호출");
-                // var resultDiv=document.getElementById("tbody");
-                // var newForm=document.createElement("form");
-                // newForm.setAttribute("action","boardContents.jsp");
-                // newForm.setAttribute("method","post");
-                // resultDiv.appendChild(newForm);
-                // var newInput=document.createElement("input");
-                // newInput.setAttribute("name","boardcnt");
-                // newForm.appendChild(newInput);
-                //newForm.submit();
+            function moveBoardConentsEvent(boardcnt){
+                console.log(boardcnt);
+                var resultDiv=document.getElementById("tbody");
+                var newForm=document.createElement("form");
+                newForm.setAttribute("action","boardContents.jsp");
+                newForm.setAttribute("method","post");
+                resultDiv.appendChild(newForm);
+                var newInput=document.createElement("input");
+                newInput.setAttribute("name","boardcount");
+                newInput.setAttribute("value",boardcnt);
+                newForm.appendChild(newInput);
+                newForm.submit();
                 
 
             }
@@ -112,7 +113,7 @@
                     // newTitleTd.appendChild(newA);
                     newTitleTd.innerHTML=boardData[boardIndex];
                     boardIndex++;
-                    newTitleTd.addEventListener("click",moveBoardConentsEvent);
+                    newTitleTd.addEventListener("click", function(){moveBoardConentsEvent(boarCount)});
 
                     var newWriterTd=document.createElement("td");
                     newWriterTd.setAttribute("class","writerTd");
