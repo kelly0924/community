@@ -46,9 +46,9 @@
                 <input type="hidden" name="boardCount" value="<%=resultCnt%>">
                 <textarea id="contentsDivTextarea" name="contents"></textarea>
             </div>
-            <div>
-                <input type="button" value="삭제" deleteFun>
-                <input id="deletButton" type="button" value="수정">
+            <div id="mainFromDiv">
+                <input id="deletButton" type="button" value="삭제" >
+                <input type="button" value="수정">
                 <input type="submit" value="저장">
             </div>
         </form>    
@@ -62,16 +62,18 @@
         deletBut.addEventListener('click',deleteFun)
 
         function deleteFun(){
+            console.log("삭제 호출");
+            var resultDiv=document.getElementById("mainFromDiv")
             var newForm=document.createElement("form");
-                newForm.setAttribute("action","deleteModule.jsp");
-                newForm.setAttribute("method","post");
-                resultDiv.appendChild(newForm);
-                var newInput=document.createElement("input");
-                newInput.setAttribute("name","boardcount");
-                newInput.setAttribute("value",boardCnt);
-                newForm.appendChild(newInput);
-                newForm.submit();
-         }
+            newForm.setAttribute("action","deleteModule.jsp");
+            newForm.setAttribute("method","post");
+            resultDiv.appendChild(newForm);
+            var newInput=document.createElement("input");
+            newInput.setAttribute("name","boardcount");
+            newInput.setAttribute("value",boardCnt);
+            newForm.appendChild(newInput);
+            newForm.submit();
+        }
         
     </script>
 </body>
