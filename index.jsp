@@ -41,7 +41,11 @@
     </head>
     <body>
         <h1>show community</h1>
-        <header> </header>
+        <header> 
+            <div>
+                <input type="button" value="글쓰기"  onclick="newWriteEvent()">
+            </div>
+        </header>
 
         <main>
             <div></div>
@@ -120,6 +124,9 @@
                 console.log(boarCount);
             }
 
+            function newWriteEvent(){
+                location.href="addPage.jsp";
+            }
         </script>
     </body>
 </html>
