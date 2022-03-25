@@ -28,7 +28,20 @@
         resultPw=result.getString(2);
     }
 
-    if(id.equals(resultId) && pw.equals(resultPw)){
+    if(id.equals(resultId) && pw.equals(resultPw)){//로그인이 성공 한 경우
+        //세션 생성 한다. 로그인에 대한 세션 생성 --> 서버에 에서 유일한 세션 아이디 부여 하고 서버에
+        // 사용자에 id와 pw 가 저장된다.
+        session.setAttribute("id", id);
+		session.setAttribute("pw", pw);
+
+        //생성한 세션에서 사용자 id, pw 가져오기
+        String sessionUserId=(String)session.getAttribute("id");
+        String sessionUserId=(String)session.getAttribute("pw");
+
+        //세션 값을 쿠키에 넣어서 주기 쿠키 생성
+        Cookie c = new Cookie("id", sessionUserId);
+		response.addCookie(c);
+
         response.sendRedirect("index.jsp");
     }else{
         response.sendRedirect("logPage.jsp");
