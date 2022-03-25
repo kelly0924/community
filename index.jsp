@@ -26,6 +26,7 @@
     String resultTitle="";
     String writer="";
     String writeDate="";
+    String userName="";
 
     ArrayList<ArrayList<String>> dataList = new ArrayList<ArrayList<String>> ();
     //DB 연결

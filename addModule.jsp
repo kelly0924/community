@@ -7,8 +7,9 @@
 
 <%
     request.setCharacterEncoding("utf-8");
-    String boardCnt=request.getParameter("boardCount");
+    //String boardCnt=request.getParameter("boardCount");
     String BoardContents=request.getParameter("contents");
+    String userId=request.getParameter("userId");
     //DB 연결
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect =DriverManager.getConnection("jdbc:mysql://localhost:3306/communityDB", "community","1234");//데이터 베이스 계정 아이디, 데이터베이스 계정 비밀번호
@@ -27,8 +28,9 @@
 </head>
 <body>
    <script>
-       alert("저장 되었습니다.");
-       location.href ="index.jsp";
+    //    alert("저장 되었습니다.");
+    //    location.href ="index.jsp";
+    console.log("<%=userId%>")
     </script>
 </body>
 </html>
