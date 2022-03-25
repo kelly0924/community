@@ -11,7 +11,7 @@
     String pw=request.getParameter("pwValue");
     String resultId="";
     String resultPw="";
-
+    String sessionId="";
     //DB 연결
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect =DriverManager.getConnection("jdbc:mysql://localhost:3306/communityDB", "community","1234");//데이터 베이스 계정 아이디, 데이터베이스 계정 비밀번호
@@ -35,11 +35,10 @@
 		session.setAttribute("pw", pw);
 
         //생성한 세션에서 사용자 id, pw 가져오기
-        String sessionUserId=(String)session.getAttribute("id");
-        String sessionUserId=(String)session.getAttribute("pw");
-
+        //String sessionUserId=(String)session.getAttribute("id");
+        sessionId = session.getId();//생성된 세션 id를 가져온다. 
         //세션 값을 쿠키에 넣어서 주기 쿠키 생성
-        Cookie c = new Cookie("id", sessionUserId);
+        Cookie c = new Cookie("cookid", sessionId);
 		response.addCookie(c);
 
         response.sendRedirect("index.jsp");
@@ -51,3 +50,19 @@
 
 
 %>
+<%-- <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <title>week7 project</title>
+    </head>
+    <body>
+        <h1>로그인 디비와 세션</h1>
+
+        <script>
+            console.log("<%=sessionId%>")
+        </script>
+    </body>
+</html> --%>
