@@ -62,6 +62,7 @@
                 <input type="button" value="글쓰기"  onclick="newWriteEvent()">
                 <div id="headerRightDiv">
                 </div>
+                <input type="button" value="로그아웃" onclick="logOutEvent()">
             </div>
         </header>
 
@@ -145,8 +146,14 @@
                 console.log(boarCount);
             }
 
+            //사용자가 새로운 글을 쓰기 위해 페이지 이동하는 함수 
             function newWriteEvent(){
                 location.href="addPage.jsp";
+            }
+
+            //로그 아웃 하기 위해 로그 아웃으로 이동하는 함수 
+            function logOutEvent(){
+                location.href="logOutModule.jsp";
             }
         </script>
     </body>

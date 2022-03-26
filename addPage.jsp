@@ -44,6 +44,7 @@
             </div>
             <div id="contentsDiv">
                 내용: <textarea id="contentsDivTextarea" name="contents"></textarea>
+                <%--userId를 넘겨 주기 위해서 type="hidden으로 만들어 주기" --%>
                 <input type="hidden" name="userId" value="<%=userId%>">
                 <input type="submit" value="저장">
             </div>

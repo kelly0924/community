@@ -8,15 +8,23 @@
 <%
     request.setCharacterEncoding("utf-8");
     //String boardCnt=request.getParameter("boardCount");
-    String BoardContents=request.getParameter("contents");
-    String userId=request.getParameter("userId");
+    String titleBoard=request.getParameter("title");
+    String dateBoard=request.getParameter("writeDate");
+    String contentsBoard=request.getParameter("contents");
+    String boardUserId=request.getParameter("userId");
     //DB 연결
     Class.forName("com.mysql.jdbc.Driver");
     Connection connect =DriverManager.getConnection("jdbc:mysql://localhost:3306/communityDB", "community","1234");//데이터 베이스 계정 아이디, 데이터베이스 계정 비밀번호
     
-    String sql="insert into board( userId,boardTitle,boardContents,boardDate) values('?','?','?','?')";
+    String sql="INSERT INTO  board( userId,boardTitle,boardContents,boardDate) VALUES (?,?,?,?)";
     PreparedStatement query=connect.prepareStatement(sql);
-    int temp= Integer.parseInt(boardCnt);
+    query.setString(1,boardUserId);
+    query.setString(2,titleBoard);
+    query.setString(3,contentsBoard);
+    query.setString(4,totolTime);
+
+    query.executeUpdate();
+    response.sendRedirect("index.jsp");
 %>
 
 <html lang="en">
@@ -30,7 +38,7 @@
    <script>
     //    alert("저장 되었습니다.");
     //    location.href ="index.jsp";
-    console.log("<%=userId%>")
+    console.log("<%=totolTime%>")
     </script>
 </body>
 </html>
