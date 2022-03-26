@@ -42,7 +42,8 @@
 		response.addCookie(c);
 
         response.sendRedirect("index.jsp");
-    }else{
+    }
+    else{
         response.sendRedirect("logPage.jsp");
     }
 
@@ -50,19 +51,18 @@
 
 
 %>
-<%-- <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <title>week7 project</title>
-    </head>
-    <body>
-        <h1>로그인 디비와 세션</h1>
 
-        <script>
-            console.log("<%=sessionId%>")
-        </script>
-    </body>
-</html> --%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week7 project</title>
+</head>
+<body>
+    <script>
+     console.log("id"+<%=id%>)
+    </script>
+
+</body>
+</html>

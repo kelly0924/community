@@ -10,6 +10,7 @@
     Cookie[] ck = request.getCookies();
     String sessionId="";
     String userId="";
+   // boolean logCheck = true;//로그인이 되었는지를 체그 하는 변수 
     if (ck != null) {//쿠키가 비여 있지 않을 경우
         for (Cookie cookies : ck) {
             if (cookies.getName().equals("cookid")){
@@ -59,10 +60,10 @@
         <h1>show community</h1>
         <header> 
             <div>
-                <input type="button" value="글쓰기"  onclick="newWriteEvent()">
-                <div id="headerRightDiv">
-                </div>
-                <input type="button" value="로그아웃" onclick="logOutEvent()">
+                <div id="headerRightWriteDiv"><input type="button" value="글쓰기"  onclick="newWriteEvent()"></div>
+                <div id="headerRightUserIdDv"></div>
+                <div id="headerRightlogOutDiv"><input id="logOutButton" type="button" value="로그아웃" onclick="logOutEvent()"></div>
+                <div id="headerRightlogInDiv"><input id="logInButton" type="button" value="로그인" onclick="logInEvent()"></div>
             </div>
         </header>
 
@@ -90,10 +91,10 @@
         </main>
 
         <script>
-            var boardList = <%=dataList%>;
-            console.log(boardList.length);
+            var boardList = <%=dataList%>;//jsp에 arrylist를 js 변수에 저장
+            var jsLogCheck ="<%=userId%>"
+            console.log(jsLogCheck);
             //userId를 출력 하는 부분
-            document.getElementById("headerRightDiv").innerHTML="<%=userId%>";
 
             function moveBoardConentsEvent(boardcnt){
                 console.log(boardcnt);
@@ -113,6 +114,18 @@
                 var newTbody=document. getElementById("tbody");
                 var boardIndex;
                 var boarCount;//count 값을 저장 할 변수  
+
+                //로그인 된 경우 와 되지 않은 경우에 예외 처리 ????????????????
+                if(jsLogCheck != null){//로그인이 되었을 경우  
+                    document.getElementById("headerRightUserIdDv").innerHTML="<%=userId%>";
+                    document.getElementById("headerRightlogInDiv").style.visibility="hidden";//로그인 버튼 숨김
+                }else{//로그인을 하지 않은 경우
+                    document.getElementById("headerRightUserIdDv").innerHTML="";
+                    document.getElementById("headerRightlogOutDiv").style.visibility="hidden";//로그아웃 버튼 숨김
+                    document.getElementById("headerRightlogInDiv").style.visibility="visible";//로그인 버튼 숨김
+                }
+                ////////////////////////////////////////////////////////////
+                // 데이터 베이스에 있는 것을 보여 주기 
                 for(var index = 0; index<boardList.length; index++){
                     boardIndex=0;
                     var newTr=document.createElement("tr");
@@ -154,6 +167,9 @@
             //로그 아웃 하기 위해 로그 아웃으로 이동하는 함수 
             function logOutEvent(){
                 location.href="logOutModule.jsp";
+            }
+            function logInEvent(){
+                location.href="logPage.jsp";
             }
         </script>
     </body>
